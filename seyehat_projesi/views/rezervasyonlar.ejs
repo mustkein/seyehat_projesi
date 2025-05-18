@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rezervasyonlar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 font-sans antialiased">
+
+  <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl w-full space-y-8">
+
+      <!-- Header -->
+      <div class="text-center">
+        <h1 class="text-3xl font-bold text-blue-600 mb-4">Rezervasyonlar</h1>
+        <p class="text-lg text-gray-500">Tüm rezervasyon bilgilerinizi aşağıda görüntüleyebilirsiniz.</p>
+      </div>
+
+      <!-- Rezervasyonlar Table -->
+      <div class="bg-white overflow-hidden shadow-lg rounded-lg">
+        <table class="min-w-full bg-white table-auto">
+          <thead>
+            <tr class="text-sm font-semibold text-gray-700 bg-gray-100">
+              <th class="py-3 px-4 text-left">Müşteri Adı</th>
+              <th class="py-3 px-4 text-left">Müşteri Soyadı</th>
+              <th class="py-3 px-4 text-left">Otel İsmi</th>
+              <th class="py-3 px-4 text-left">Oda Türü</th>
+              <th class="py-3 px-4 text-left">Oda Fiyatı</th>
+              <th class="py-3 px-4 text-left">Giriş Tarihi</th>
+              <th class="py-3 px-4 text-left">Çıkış Tarihi</th>
+              <th class="py-3 px-4 text-left">Aksiyonlar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (rezervasyonlar.length === 0) { %>
+              <tr class="text-sm text-gray-600">
+                <td colspan="8" class="py-3 px-4 text-center">Hiç rezervasyon bulunmamaktadır.</td>
+              </tr>
+            <% } else { %>
+              <% rezervasyonlar.forEach(rezervasyon => { %>
+                <tr class="text-sm text-gray-600 hover:bg-gray-50">
+                  <td class="py-3 px-4"><%= rezervasyon.musteri_ad %></td>
+                  <td class="py-3 px-4"><%= rezervasyon.musteri_soyad %></td>
+                  <td class="py-3 px-4"><%= rezervasyon.otel_isim %></td>
+                  <td class="py-3 px-4"><%= rezervasyon.oda_turu %></td>
+                  <td class="py-3 px-4"><%= rezervasyon.oda_fiyat %></td>
+                  <td class="py-3 px-4"><%= rezervasyon.giris_tarihi %></td>
+                  <td class="py-3 px-4"><%= rezervasyon.cikis_tarihi %></td>
+                  <td class="py-3 px-4">
+                    <a href="/rezervasyonlar/sil/<%= rezervasyon.id %>" class="text-red-600 hover:text-red-800">Sil</a>
+                  </td>
+                </tr>
+              <% }); %>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pagination or any additional content -->
+      <div class="flex justify-center mt-6">
+        <!-- Pagination would go here if needed -->
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

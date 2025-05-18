@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Şehirler</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center p-6">
+
+  <h1 class="text-3xl font-bold mb-8 text-green-600">Şehirler Listesi</h1>
+
+  <div class="w-full max-w-3xl grid grid-cols-1 gap-4">
+
+    <% sehirler.forEach(sehir => { %>
+      <div class="bg-white shadow-md rounded-lg p-4 flex justify-between items-center">
+        <p class="text-xl font-semibold"><%= sehir.isim %></p>
+        <a href="/sehirler/sil/<%= sehir.id %>" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Sil</a>
+      </div>
+    <% }) %>
+
+  </div>
+
+  <form action="/sehirler/ekle" method="POST" class="mt-8 flex gap-4">
+    <input type="text" name="isim" placeholder="Yeni şehir ekle" required
+      class="px-4 py-2 rounded border border-gray-300">
+    <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded">Ekle</button>
+  </form>
+
+  <!-- Anasayfaya Dön Butonu -->
+  <div class="text-center mt-6">
+    <a href="/oteller" class="text-blue-500 hover:underline">← Oteller Listesine Geri Dön</a>
+  </div>
+
+
+</body>
+</html>

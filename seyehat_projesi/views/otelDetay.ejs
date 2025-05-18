@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= otel.isim %> Detayları</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+  <!-- Navbar -->
+  <nav class="bg-blue-600 p-4 text-white">
+    <div class="container mx-auto flex justify-between items-center">
+      <a href="/" class="font-bold text-xl">Seyahat Uygulaması</a>
+    </div>
+  </nav>
+
+  <!-- Otel Detayları -->
+  <div class="container mx-auto p-6">
+    <div class="bg-white shadow-md rounded-lg p-8">
+      
+      <h1 class="text-3xl font-bold text-center mb-4"><%= otel.isim %></h1>
+      <p class="text-xl text-center text-gray-600 mb-2"><%= otel.sehir %></p>
+      <p class="text-lg text-center font-semibold text-green-600 mb-6"><%= otel.fiyat %> TL / gece</p>
+
+      <% if (otel.foto) { %>
+        <div class="flex justify-center mb-6">
+          <img src="/uploads/<%= otel.foto %>" alt="Otel Fotoğrafı" class="rounded-lg shadow-lg max-w-md">
+        </div>
+      <% } %>
+
+      <div class="mt-8">
+        <h2 class="text-2xl font-semibold mb-2">Otel Hakkında</h2>
+        <p class="mt-2 text-gray-700">Bu otel, <%= otel.sehir %> şehrinde yer almaktadır ve mükemmel bir konaklama deneyimi sunmaktadır. Fiyatı ise sadece <%= otel.fiyat %> TL'dir.</p>
+      </div>
+
+  
+
+    </div>
+  </div>
+    <!-- Anasayfaya Dön Butonu -->
+    <div class="text-center mt-6">
+      <a href="/oteller" class="text-blue-500 hover:underline">← Oteller Listesine Geri Dön</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+  <!DOCTYPE html>
+  <html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Otel Ekle</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet"/>
+  </head>
+  <body class="bg-gray-50 font-sans text-gray-800">
+    <div class="max-w-xl mx-auto mt-12 px-6">
+      <h1 class="text-3xl font-bold mb-6 text-center text-green-600">Otel Ekle</h1>
+
+      <form action="/oteller" method="POST" enctype="multipart/form-data" class="bg-white p-8 shadow-xl rounded-xl space-y-6">
+        <!-- Otel Adı (kullanıcı kendisi yazacak) -->
+  <div>
+    <label for="isim" class="block mb-2 text-sm font-medium text-gray-700">Otel Adı</label>
+    <input type="text" id="isim" name="isim" class="w-full border border-gray-300 rounded-lg px-4 py-3" placeholder="Otel adını girin" required>
+  </div>
+
+
+        <!-- Şehir Seçimi -->
+        <div>
+          <label for="sehir_id" class="block mb-2 text-sm font-medium text-gray-700">Şehir</label>
+          <select id="sehir_id" name="sehir_id" class="w-full border border-gray-300 rounded-lg px-4 py-3" required>
+            <option value="">-- Şehir Seçin --</option>
+            <% sehirler.forEach(sehir => { %>
+              <option value="<%= sehir.id %>"><%= sehir.isim %></option>
+            <% }) %>
+          </select>
+        </div>
+        <!-- Oda Türleri -->
+<div id="odaTurleri" class="space-y-4">
+  <label class="block mb-2 text-sm font-medium text-gray-700">Oda Türleri ve Fiyatları</label>
+  
+  <div class="oda-turu flex space-x-4">
+    <input type="text" name="oda_turu[]" placeholder="Oda Türü (Örn: Standart)" class="flex-1 border border-gray-300 rounded-lg px-4 py-2" required>
+    <input type="number" name="oda_fiyat[]" placeholder="Fiyat (Örn: 500)" class="w-32 border border-gray-300 rounded-lg px-4 py-2" required>
+    <button type="button" onclick="this.parentElement.remove()" class="text-red-600 hover:underline">Kaldır</button>
+  </div>
+</div>
+
+<button type="button" onclick="odaTuruEkle()" class="text-blue-600 hover:underline text-sm mt-2">+ Oda Türü Ekle</button>
+
+
+
+
+        <!-- Fotoğraf Yükleme -->
+        <div>
+          <label for="foto" class="block mb-2 text-sm font-medium text-gray-700">Fotoğraf</label>
+          <input type="file" id="foto" name="foto" accept="image/*" class="w-full border border-gray-300 rounded-lg px-4 py-3" />
+        </div>
+
+        <!-- Kaydet Butonu -->
+        <div>
+          <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg">Oteli Kaydet</button>
+        </div>
+      </form>
+
+      <div class="text-center mt-6">
+        <a href="/oteller" class="text-sm text-blue-600 hover:underline">← Otellere Geri Dön</a>
+      </div>
+    </div>
+    <script>
+  function odaTuruEkle() {
+    const container = document.getElementById('odaTurleri');
+    const yeniOda = document.createElement('div');
+    yeniOda.className = 'oda-turu flex space-x-4 mt-2';
+    yeniOda.innerHTML = `
+      <input type="text" name="oda_turu[]" placeholder="Oda Türü (Örn: Deluxe)" class="flex-1 border border-gray-300 rounded-lg px-4 py-2" required>
+      <input type="number" name="oda_fiyat[]" placeholder="Fiyat" class="w-32 border border-gray-300 rounded-lg px-4 py-2" required>
+      <button type="button" onclick="this.parentElement.remove()" class="text-red-600 hover:underline">Kaldır</button>
+    `;
+    container.appendChild(yeniOda);
+  }
+</script>
+  </body>
+  </html>
